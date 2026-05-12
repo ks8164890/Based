@@ -1,0 +1,20 @@
+name: Auto Commits
+on:
+  workflow_dispatch:
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Make commits
+        run: |
+          git config user.email "test@test.com"
+          git config user.name "ks8164890"
+          for i in $(seq 1 100); do
+            echo "day $i" >> log.md
+            git add .
+            git commit -m "day $i"
+          done
+          git push
