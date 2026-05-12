@@ -7,14 +7,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Make commits
         run: |
-          git config user.email "test@test.com"
+          git config user.email "ks8164890@users.noreply.github.com"
           git config user.name "ks8164890"
           for i in $(seq 1 100); do
-            echo "day $i" >> log.md
+            echo "update $i" >> log.md
             git add .
-            git commit -m "day $i"
+            git commit -m "update $i"
           done
           git push
